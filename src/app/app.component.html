@@ -1,0 +1,19 @@
+<div class="navbar-container">
+  <nav>
+    <ul>
+      <li *ngFor="let action of actionC">
+        <button
+          (click)="setActionCourante(action)"
+          [class.active]="action === actionCourante"
+          [style.backgroundColor]="
+            action === actionCourante ? 'red' : 'backgroundColor'
+          "
+          [routerLink]="action.route"
+        >
+          {{ action.titre }}
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
+<router-outlet></router-outlet>

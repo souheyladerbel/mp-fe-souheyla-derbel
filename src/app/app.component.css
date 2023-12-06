@@ -1,0 +1,42 @@
+/* app.component.css */
+
+.navbar-container {
+  background-color: #333;
+  padding: 10px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+li {
+  margin-right: 10px;
+}
+
+button {
+  background-color: #333; /* Gris foncé */
+  color: #fff; /* Blanc */
+  border: none;
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #555; /* Gris foncé légèrement plus clair au survol */
+}
+
+button.active {
+  background-color: #66ccff; /* Bleu clair pour le bouton actif */
+  color: #000; /* Noir pour le texte du bouton actif */
+}

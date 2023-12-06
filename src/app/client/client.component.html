@@ -1,0 +1,139 @@
+<!-- clients.component.html -->
+<div *ngIf="modeEdition === true">
+  <h1>Modification Client</h1>
+
+  <form #clientForm="ngForm" (ngSubmit)="validateForm(clientForm)">
+    <table>
+      <tr>
+        <td>Id:</td>
+        <td>
+          <input
+            id="id"
+            name="id"
+            type="text"
+            [(ngModel)]="clientCourant.id"
+            required
+            readonly
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <td>Nom:</td>
+        <td>
+          <input type="text" name="nom" [(ngModel)]="clientCourant.nom" />
+        </td>
+      </tr>
+
+      <tr>
+        <td>Prenom:</td>
+        <td>
+          <input type="text" name="prenom" [(ngModel)]="clientCourant.prenom" />
+        </td>
+      </tr>
+
+      <tr>
+        <td>Numero:</td>
+        <td>
+          <input type="text" name="numero" [(ngModel)]="clientCourant.numero" />
+        </td>
+      </tr>
+
+      <tr>
+        <td>Adresse:</td>
+        <td>
+          <input
+            type="text"
+            name="adresse"
+            [(ngModel)]="clientCourant.adresse"
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <td>Actif:</td>
+        <td>
+          <span
+            [ngClass]="{
+              actif: clientCourant.actif,
+              inactif: !clientCourant.actif
+            }"
+          ></span>
+          <input
+            type="checkbox"
+            name="actif"
+            [(ngModel)]="clientCourant.actif"
+          />
+        </td>
+
+        <td>Chiffre d'affaires:</td>
+        <td>{{ c.chiffreAffaires }}</td>
+
+        <!-- Afficher le chiffre d'affaires total actuel -->
+      </tr>
+
+      <tr [align]="'center'" colspan="2">
+        <div style="text-align: right; margin-right: 10px">
+          <button type="button" (click)="modeEdition = false">Annuler</button>
+          <input
+            type="submit"
+            value="Valider"
+            [disabled]="!clientForm.form.valid"
+          />
+        </div>
+      </tr>
+    </table>
+  </form>
+</div>
+
+<div>
+  <h1>Liste des clients</h1>
+  <div class="search-container" style="margin-left: 1030px">
+    <div class="search-input-container">
+      <input
+        type="text"
+        placeholder="Rechercher par nom"
+        [(ngModel)]="searchText"
+        class="search-input"
+      />
+      <button type="button" (click)="searchClients()">Rechercher</button>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Numero</th>
+        <th>Adresse</th>
+        <th>Actif</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let c of clients">
+        <td>{{ c.id }}</td>
+        <td>{{ c.nom }}</td>
+        <td>{{ c.prenom }}</td>
+        <td>{{ c.numero }}</td>
+        <td>{{ c.adresse }}</td>
+        <td>
+          <span [ngClass]="{ actif: c.actif, inactif: !c.actif }"></span>
+          {{ c.actif ? "Actif" : "Inactif" }}
+        </td>
+        <td>
+          <button style="background-color: green" (click)="editClient(c)">
+            Editer
+          </button>
+        </td>
+        <td>
+          <button style="background-color: red" (click)="deleteClient(c)">
+            Supprimer
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
